@@ -1,0 +1,322 @@
+주제 : CLI로 구현하는 unix terminal
+
+
+
+
+
+package : com.terminal.method.run.Run : 실행을 위한 클래스
+new MainView().main();
++main(String[] args) 
+
+package : com.terminal.Exception.+ class NoUsrNumThreeException extends Exception
+숫자야구에서 사용자가 3자리의 수를 입력하지 않으면 exception 발생
+
+
+
+package : com.terminal.method.TerminalMethod : 터미널의 전반적 메소드 제공
+-path : string : 기본 path
+-pathcd : string : 이동 시 변화되는 path
+
++void : last() :  terminal  터미널 마지막 접속 시간 표시
+스트림을 열어서 이전에 접속한 날짜가 있는 파일이 존재한다면 읽어오고 	 이전의 접속 날짜를 콘솔로 출력
+만약 파일이 없다면 다음 접속 시에 파일을 읽어 오기 위해서 파일을 만들고 Date에서 현재 시간을 받고, 
+simpledataforamat으로 바꿔서 저장 
+
+
+
++void : help() :  termianl 내 모든 명령어 표시
+
+
++void : cd(String path) : path를 받아서 terminal의 위치 변경
+파일 스트림을 열고 매개변수로 새로운 경로를 받아서 위치를 변경
+
+
+
++void : cdback() : 상위 경로로 이동
+기존의 경로에서 맨 마지막에 있는 경로를  StringBuilder와 split을 이용해서 제외하고 위치를 변경
+
++void makedir(String dir) : 디렉토리 생성
+현재의 경로에서 파일 객체를 생성하고 매개변수로 String을 받아서 mkdirs()로 디렉토리를 생성
+
+
++void ls() : String[] 로 모든 파일 및 폴더 경로 반환/출력
+file클래스의 list를 이용해서 String 배열로 모든 디렉토리와 파일 이름을 받아서 출력
+
+
++void touch(String fileName) : StringBuilder로 파일 내부의 문자열 읽기/출력
+해당 파일이 존재한다면 주 스트림과 보조 스트림을 이용해서 문자를 출력
+파일이 없다면 해당 파일이 없다는 문구를 출력
+
++void write() : 파일 스트림을 열어 파일 생성 및 작성
+사용자에게 파일의 이름을 입력 받고, 추가적으로 문자열을 입력받아 파일에 작성 사용자가 ‘태양의 식후비법’ 이라고 치면 메소드 종료
+
++void rm() : 파일객체를 통해 해당 경로의 폴더를 삭제
+사용자에게 문자열을 받아 해당 되는 이름을 가진파일 및 폴더를 삭제한다.
+
+
+
++void clear(): cli창을 밀어서 정리한다.
+Printout으로 현재의 창을 정리
+
++vod today() : 현재 시간을 출력한다.
+LocalDateTime의 now를 이용해서 년/월/일 시:분:초를 받아서 출력
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+package : com.terminal.method.view.MainView : 전반적인 view를 담당 
+-Scanner  scn
+- TerminalMethod tm
+
+++ main() : mainview
+
+— 이하 tm의 메소드 구현 —
++void help() 
+tm의 해당 메소드 실행
+
++void cd(String temp)
+tm의 해당 메소드 실행
+
++void ls()
+tm의 해당 메소드 실행
+
++void makerdir()
+tm의 해당 메소드 실행
+
++void clear()
+tm의 해당 메소드 실행
+
++void now()
+tm의 해당 메소드 실행
+
++void touch(String fileName)
+tm의 해당 메소드 실행
+
++void rm(String fileName)
+tm의 해당 메소드 실행
+
++void write(String fileName)
+tm의 해당 메소드 실행
+
++void cdBack()
+tm의 해당 메소드 실행
+
+
++void baseball()
+해당 패키지의 view의 main view 실행
+
++void calc()
+해당 패키지의 view의 main view 실행
+
++void port()
+해당 패키지의 view의 main view 실행
+
++void lunch()
+해당 패키지의 view의 main view 실행
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+이외의 서브 메소드
+숫자야구
+com.termianl.method.baseball.controller.BaseController : 메인뷰와 룰을 이어줌
+BaseRule br = new BaseRule();
+
++ void initiateGame()
+br.computerNumberInsert (컴퓨터가 수를 정하는 메소드) 를 실행
+
+++ processingGram(List<Integer> input)
+br.userNumberInsert(input)을 실행해서 외부에서 받은 값을 list로 저장
+
+++ boolean gameJudgement()
+br.Aggregator()메소드의 값이 true 이면 true 아니라면 false 반환
+
+
+com.termianl.method.baseball.rule.BaseRule : 숫자야구의 전반적인 로직을 담당
+
+	- int[] computerNum = new int[3]; : 컴퓨터가 생성한 0~9까지의 중복되지 않는 난수를 저장
+	- int[] userNum = new int[3]; : 사용자가 생성한 0~9까지의 중복되지 않는 난수를 저장
+	- int gameCount = 0; : 게임을 진행하면 (userNumberInsert(List<Integer> usrTemp) throws NoUsrNumThreeException) 카운트가 올라감
+	- int ballCount =0; : ballRule()메소드 실행 시 사용자가 입력한 수들이 Ball이면 집계됨
+	- int strikeCount =0; : strikeRule()메소드 실행 시 사용자가 입력한 수들이 strike이면 집계됨
+	- int outCount =0; :  outRule()메소드 실행 시 사용자가 입력한 수들이 out이면 집계됨
+	- Set<Integer> comTemp = new HashSet<>();
+
+	+ void computerNumberInsert() 
+: 컴퓨터가 난수를 생성하고 comTemp에 중복되지 않도록 저장 해당 값을 computerNum으로 이전
+
+	+ void userNumberInsert(List<Integer> usrTemp) throws NoUsrNumThreeException
+: 실행할 때마다 gameCount를 올림
+:  사용자가 입력한 중복하지 않는 수의 개수가  3개 이면  userNum으로 이전 그렇지 않으면  NoUsrNumThreeException 발생
+
+
+	+ void strikeRule() 
+:숫자야구의 strike상황 집계 computerNum과 userNum을 비교
+
+	+ void ballRule()
+:숫자야구의 ball상황 집계 computerNum과 userNum을 비교
+
+	+ void outRule()
+:숫자야구의 out상황 집계 computerNum과 userNum을 비교
+
+	+ boolean Aggregator()
+: outRule, strikeRule, ballRule을 실행해서 값을 집계,  3S이면 게임에서 승리한다. 또한 gameCount가 10이면 게임에서 패배한다. 
+그것도 아니라면 countCleaner()를 실행해 ball/strike/outCount를 0으로 초기화 하고 게임을 게속한다.
+
+	+ void countCleaner()
+:ball/strike/outCount를 0으로 초기화
+
+
+
+com.termianl.method.baseball.view.BaseballView : 숫자야구의 메인뷰
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+계산기
+com.termianl.method.calculator.operator.CalcOperator : 계산을 구현
+
++ void sum() : 더하기
+만약 입력 받은 값이 ‘.0’으로 끝나면 int로 형변환해서 계산 후 출력 그렇지 않으면 double로 계산, 출력
+
++ void sub() : 뺴기
+만약 입력 받은 값이 ‘.0’으로 끝나면 int로 형변환해서 계산 후 출력 그렇지 않으면 double로 계산, 출력
+
++ void mul() : 곱하기
+만약 입력 받은 값이 ‘.0’으로 끝나면 int로 형변환해서 계산 후 출력 그렇지 않으면 double로 계산, 출력
+
++ void div() : 나눗셈
+만약 입력 받은 값이 ‘.0’으로 끝나면 int로 형변환해서 계산 후 출력 그렇지 않으면 double로 계산, 출력
+
+com.termianl.method.calculator.view.CalcView : 계산기의 메인뷰
+mainView()
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+점심추천
+com.termianl.method.lunch.view.LunchView : 점심 추천의 메인뷰
+mainView() 
+com.termianl.method.lunch.roulette.LunchRoulette : 점심추천의 주요 로직 구현
+Math.Random()을 이용해서 1부터 20까지의 난수를 받고 switch로 이를 받아서 분기처리를 함
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+khPortal
+
+
+com.terminal.method.kh.portal.view.KhView : khportal에 대한 메인뷰
+
+
++ void login() :접근을 위한 초기 로그인
++ void signUp() : 아이디가 없다면 계정 생성 단, 미리 공지된 ‘유병승’이라는 글자를 적어야 계정을 생성할 수 있음
++ void mainView() : kh포탈 메인 1 학생 관리 (1학생 등록/ 2성적 입력/ 3학생 삭제 기능이 있음 > managementView를 불러냄
+							2 학생 검색 (1 부분 검색(오름차순)/ 2 전체 검색 (오름차순)
+
+
++ void managementView() 1학생 관리 메뉴의 세분화된 메뉴
+	+ void deleteStudent() : 
+	+ void inputGrade()
+	+ void enrollstudent()
+
+
+
++ void searchView()  2학생 검색의 세분화된 메뉴
+
+	+ void searchAll()
+	+ void searchPartial
+
+
+
+	
+
+
+
+package com.terminal.method.kh.portal.controller
+
+- Map<String, TeacherInfo> teacherLogin = new HashMap<>();
+	StudentDao sd = new StudentDao();
+	File file = new File("teacher.database");
+	
+
++ void teacherSave()  : 파일이 없다면 파일로 만들고 teacher에 대한 정보를 저장
++ void teacherLoad()  : 파일을 불러와서 teacherLogin(맵)을 갱신
++ boolean signIn(String id, String pw) : id와 pw가 일치하면 로그인 + 
++ void signUp(String id, TeacherInfo info) : 파일을 읽기 전의 길이와 읽은 후의 길이를 비교해서 읽고  후의 길이가 길다면 저장
++ void enrollStudent(String name, String phone)  : 값을 받아서 dao로 보냄 sd.enrollStudent(name, phone)
++ void inputGrade(String name) : sd.inputGrade : 성적을 저장한다.
++ void deleteStudent(String name) : sd.deleteStudent 이름을 받아서 대조 후 삭제
++ void searchAll() sd.seachAll 전체 검색
++ void searchPartial(String name) sd.searchPartial : 부분 검색
+
+
+
+
+
+
+
+
+com.terminal.method.kh.portal.model.vo.Student : 학생에 대한 기본 정보
+
+serializable, comparable구현
+- String name
+- char gender
+- String Phone
+- int java
+- int sql
+
+@override
++hashCode : int
++equals : boolean
++ toString  : String
++ compareto : int
+
+
+com.terminal.method.kh.portal.model.vo.TeacherInfo : 관리자인 선생님에 대한 정보
+serializable 구현
+-String name
+-String pNo
+-String subject
+-String password
+
+
+
+
+
+
+com.terminal.method.kh.portal.model.dao.StudentDao : 학생 에 대한 기본 메소드 제공
+
+	List<Student> stuList = new ArrayList<>(); : 학생을 저장할 list를 저장
+	File file = new File("Students.database");
+	Scanner scn = new Scanner(System.in);
+	int java = 0;
+	int sql = 0;
+
++ void loadFile() : 파일을 불러서 객체로 주입
++ void saveFile() : 학생 객체를 파일로 저장
++ void enrollStudent(String name, String phone)  : 파일이 있으면 불러와서 Student를 파일로 저장
++ void inputGrade(String name) : 파일을 불러오고 점수 주입, 저장.  이때, 학생의 이름과 찾으려는 학생의 이름이 일치할 경우 실행
++ void deleteStudent(String name ) : 이름이 같으면 지우고 파일로 저장. 이때, 학생의 이름과 찾으려는 학생의 이름이 일치할 경우 실행
++ void searchAll() : 파일이 존재하면 불러오고 stuList에 주입. stuList안의 Student객체의 각 내용들을 불러내서 출력
++ void searchPartail() : 파일이 존재하면 불러오고 stuList에 주입. 이름을 입력받아 이름이 같다면 출력 그렇지 않다면 학생 등록을 요구
+
+
+

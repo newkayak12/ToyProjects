@@ -19,6 +19,9 @@ public class Pnum1330_compare {
 			System.out.println("==");
 		}
 		
+		
+		
+		
 	}
 		
 	

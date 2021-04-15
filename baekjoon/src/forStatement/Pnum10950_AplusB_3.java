@@ -21,6 +21,7 @@ public class Pnum10950_AplusB_3 {
 							System.out.println(A + " + " + B + " = " + (A+B));
 					
 				}
+			scn.close();
 
 	}
 

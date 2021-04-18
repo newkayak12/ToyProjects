@@ -33,5 +33,6 @@ public class Pnum2588_multiple {
 		
 		
 		
+		scn.close();
 	}
 }

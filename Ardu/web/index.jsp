@@ -1,11 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.io.File" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src = "https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+	$(function(){
+		<%		String requestpath = request.getContextPath();
+				System.out.println(Class.class.getResource("bin").getPath());
+				
+				
+				
+				File path = new File(requestpath+"/list");
+				File[] list = path.listFiles();
+				System.out.println(list);
+				
+				if(list!=null&&list.length>0){
+					for(File i :list) {
+						
+						System.out.println(i);
+					}
+				}
+		%>
+		
+		
+		
+		<%-- 
+		let ptag = ${"<p>"};
+		let atag = $("<a>").attr("href","<%=fileName%>")
+		
+		/* ${"#container"}.appned(ptag.append.(atag)); */
+		
+		console.log(<%=fileName%>) --%>
+		
+		
+		
+	})
+
+</script>
+
 
 </head>
 <body>

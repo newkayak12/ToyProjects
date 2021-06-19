@@ -1,4 +1,4 @@
-package fibonaccinumbers;
+package recursive.fibonaccinumbers;
 
 import java.util.ArrayList;
 import java.util.List;

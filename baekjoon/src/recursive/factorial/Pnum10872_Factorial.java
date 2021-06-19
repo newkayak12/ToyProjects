@@ -1,4 +1,4 @@
-package recursive;
+package recursive.factorial;
 
 import numbers.Factorial;
 

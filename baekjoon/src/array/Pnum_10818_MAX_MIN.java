@@ -15,7 +15,7 @@ public class Pnum_10818_MAX_MIN {
 				for (int i = 0; i<n; i++) {
 								System.out.println("Enter Any Number ( -1,000,000<= a <= 1,000,000");
 						arr[i] =  scn.nextInt();
-						
+						Integer.parseInt("1");
 								System.out.println(arr[i]+" ");
 					
 				}
@@ -57,6 +57,10 @@ public class Pnum_10818_MAX_MIN {
 					
 				
 			
+	}
+	
+	public String hello() {
+		return "";
 	}
 
 }

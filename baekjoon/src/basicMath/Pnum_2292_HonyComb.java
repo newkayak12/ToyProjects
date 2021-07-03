@@ -27,19 +27,22 @@ public class Pnum_2292_HonyComb {
 	
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
-		System.out.println("number");
-		int select = s.nextInt();
 		
-		int fin =1;
-		for(int i=1; i<100; i++) {
+		
+			System.out.println("number");
+			int select = s.nextInt();
 			
-			fin += 6*i;
-			
-			
-				if((fin-(6*i))+1<=select && select<=fin) {
-					System.out.println((i+1)+"개의 방을 지난다.");
-				}
-		}
+			int fin =1;
+			for(int i=1; i<100; i++) {
+				
+				fin += 6*i;
+				
+				
+					if((fin-(6*i))+1<=select && select<=fin) {
+						System.out.println((i+1)+"개의 방을 지난다.");
+					}
+			}
+		
 		
 	}
 }
